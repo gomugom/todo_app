@@ -1,13 +1,14 @@
 import React from 'react'
 
-export default function ({provided, data, todoData, setTodoData}) {
-    
-    const onCancelClick = (id) => {
+const ListItem = React.memo(({provided, data, todoData, setTodoData}) => {
+    console.log('Item Component');
+
+    const onCancelClick = React.useCallback((id) => {
         let newTodoData = todoData.filter(e => e.id !== id);
         setTodoData(newTodoData);
-    }
+    }, [todoData]);
 
-    const changeChkBox = (id) => {
+    const changeChkBox = React.useCallback((id) => {
         let changedTodoData = todoData.map(e => {
             if(e.id === id) {
                 e.completed = !e.completed;
@@ -15,7 +16,7 @@ export default function ({provided, data, todoData, setTodoData}) {
             return e;
         });
         setTodoData(changedTodoData);
-    }
+    }, [todoData]);
 
     return (
         <div
@@ -37,5 +38,8 @@ export default function ({provided, data, todoData, setTodoData}) {
 
         </div>
     )
-    
-}
+});
+
+export default ListItem;
+
+
