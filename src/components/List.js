@@ -32,6 +32,8 @@ const List = React.memo(({ todoData, setTodoData }) => { // props
 
         setTodoData(todoData);
 
+        localStorage.setItem('todoData', JSON.stringify(todoData));
+
     }, [todoData]);
 
     const sum = (a, b) => {

@@ -8,6 +8,7 @@ const ListItem = React.memo(({snaphost, provided, data, todoData, setTodoData}) 
     const onCancelClick = React.useCallback((id) => {
         let newTodoData = todoData.filter(e => e.id !== id);
         setTodoData(newTodoData);
+        localStorage.setItem('todoData', JSON.stringify(newTodoData));
     }, [todoData]);
 
     const changeChkBox = React.useCallback((id) => {
@@ -18,6 +19,7 @@ const ListItem = React.memo(({snaphost, provided, data, todoData, setTodoData}) 
             return e;
         });
         setTodoData(changedTodoData);
+        localStorage.setItem('todoData', JSON.stringify(changedTodoData));
     }, [todoData]);
 
     const handleChangeEditTitle = (e) => {
@@ -36,6 +38,8 @@ const ListItem = React.memo(({snaphost, provided, data, todoData, setTodoData}) 
         });
 
         setTodoData(newTodoData);
+
+        localStorage.setItem('todoData', JSON.stringify(newTodoData));
         
         setIsEditing(false);
 

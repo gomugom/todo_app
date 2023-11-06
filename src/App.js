@@ -3,11 +3,13 @@ import './App.css';
 import List from './components/List';
 import Form from './components/Form';
 
+let initialTodoData = localStorage.getItem('todoData') ? JSON.parse(localStorage.getItem('todoData')) : [];
+
 export default function App() {
   
   console.log('App Component');
   
-  const [todoData, setTodoData] = useState([]);
+  const [todoData, setTodoData] = useState(initialTodoData);
   const [value, setValue] = useState('');
 
   // 구조분해
@@ -34,6 +36,7 @@ export default function App() {
 
   const handleRemoveAllClick = (e) => {
     setTodoData([]);
+    localStorage.setItem('todoData', JSON.stringify([]));
   }
 
   return(
@@ -49,6 +52,7 @@ export default function App() {
           <List todoData={todoData} setTodoData={setTodoData} />          
 
           <Form value={value}
+                todoData={todoData}
                 setTodoData={setTodoData}
                 setValue={setValue} />
 

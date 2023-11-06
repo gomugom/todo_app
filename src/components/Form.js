@@ -1,6 +1,6 @@
 import React, {useCallback} from 'react'
 
-export default function Form({value, setTodoData, setValue}) {
+export default function Form({value, todoData, setTodoData, setValue}) {
   
     console.log('Form Component');
 
@@ -17,6 +17,9 @@ export default function Form({value, setTodoData, setValue}) {
         }
             
         setTodoData((prevData) => [...prevData, newTodoData]);
+        
+        localStorage.setItem('todoData', JSON.stringify([...todoData, newTodoData]));
+
         setValue('');
 
     };
