@@ -1,10 +1,9 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { DragDropContext, Draggable, Droppable } from 'react-beautiful-dnd';
 import ListItem from './ListItem';
 
 // ==> React.memo() : 연관성 없는 Component까지 ReRendering되는 것을 막아주는 역할
 const List = React.memo(({ todoData, setTodoData }) => { // props
-    console.log('List Component');
 
     /*
         [ React.useCallback() ]
@@ -73,7 +72,7 @@ const List = React.memo(({ todoData, setTodoData }) => { // props
                                             <Draggable key={data.id} draggableId={data.id + ""} index={idx}>
                                                 {
                                                     (provided, snapshot) => (
-                                                        <ListItem provided={provided} data={data} todoData={todoData} setTodoData={setTodoData} />
+                                                        <ListItem snapshot={snapshot} provided={provided} data={data} todoData={todoData} setTodoData={setTodoData} />
                                                     )
                                                 }
                                             </Draggable>
